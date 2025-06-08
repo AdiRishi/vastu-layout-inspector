@@ -4,14 +4,13 @@ import ImageUpload from '@/components/image-upload';
 import AnalysisHeader from '@/components/layout-analysis/analysis-header';
 import ImageContainer from '@/components/layout-analysis/image-container';
 import InstructionsPanel from '@/components/layout-analysis/instructions-panel';
-import StorageIndicator from '@/components/layout-analysis/storage-indicator';
 import { useContainerSize } from '@/hooks/use-container-size';
 import { useImageStorage } from '@/hooks/use-image-storage';
 import { useRef } from 'react';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { imageData, isRestoredFromStorage, saveImage, clearStoredImage } = useImageStorage();
+  const { imageData, saveImage, clearStoredImage } = useImageStorage();
   const containerSize = useContainerSize(containerRef, [imageData]);
 
   const handleImageLoad = (src: string, width: number, height: number) => {
@@ -43,8 +42,6 @@ export default function Home() {
           </div>
         ) : (
           <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-            <StorageIndicator isVisible={isRestoredFromStorage} />
-
             <AnalysisHeader onResetCompass={handleResetCompass} onRemoveImage={handleImageRemove} />
 
             <ImageContainer
