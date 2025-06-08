@@ -9,7 +9,31 @@ export default function Home() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
   const [containerSize, setContainerSize] = useState({ width: 800, height: 600 });
+  const [isImageFromStorage, setIsImageFromStorage] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Load image from localStorage on component mount
+  useEffect(() => {
+    const savedImage = localStorage.getItem('vastu-inspector-image');
+    const savedImageSize = localStorage.getItem('vastu-inspector-image-size');
+
+    if (savedImage && savedImageSize) {
+      try {
+        const size = JSON.parse(savedImageSize);
+        setImageSrc(savedImage);
+        setImageSize(size);
+        setIsImageFromStorage(true);
+
+        // Clear the indicator after a few seconds
+        setTimeout(() => setIsImageFromStorage(false), 3000);
+      } catch (error) {
+        console.error('Error loading saved image:', error);
+        // Clear corrupted data
+        localStorage.removeItem('vastu-inspector-image');
+        localStorage.removeItem('vastu-inspector-image-size');
+      }
+    }
+  }, []);
 
   // Update container size when window resizes
   useEffect(() => {
@@ -28,11 +52,25 @@ export default function Home() {
   const handleImageLoad = (src: string, width: number, height: number) => {
     setImageSrc(src);
     setImageSize({ width, height });
+
+    // Save to localStorage
+    try {
+      localStorage.setItem('vastu-inspector-image', src);
+      localStorage.setItem('vastu-inspector-image-size', JSON.stringify({ width, height }));
+    } catch (error) {
+      console.error('Error saving image to localStorage:', error);
+      // Handle case where localStorage is full or unavailable
+      alert('Warning: Unable to save image locally. It may not persist after refresh.');
+    }
   };
 
   const handleImageRemove = () => {
     setImageSrc(null);
     setImageSize({ width: 0, height: 0 });
+
+    // Clear from localStorage
+    localStorage.removeItem('vastu-inspector-image');
+    localStorage.removeItem('vastu-inspector-image-size');
   };
 
   const handleResetCompass = () => {
@@ -54,6 +92,11 @@ export default function Home() {
           </div>
         ) : (
           <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+            {isImageFromStorage && (
+              <div className="mb-4 rounded-lg border border-green-200 bg-green-50 p-3">
+                <p className="text-sm text-green-800">✅ Image restored from previous session</p>
+              </div>
+            )}
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <h2 className="text-xl font-semibold text-gray-900">Layout Analysis</h2>
@@ -111,6 +154,7 @@ export default function Home() {
                 <li>• The compass shows 8 directions with lines extending to the edges</li>
                 <li>• Direction labels are clearly marked: N, NE, E, SE, S, SW, W, NW</li>
                 <li>• Use this to analyze the directional orientation of rooms and elements in your layout</li>
+                <li>• Your image is automatically saved locally and will persist after page refresh</li>
               </ul>
             </div>
           </div>
