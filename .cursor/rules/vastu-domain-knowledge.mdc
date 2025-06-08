@@ -1,0 +1,66 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Vastu Shastra Domain Knowledge
+
+## Application Context
+This is a **Vastu Layout Inspector** - a tool for analyzing home layouts according to Vastu Shastra principles, an ancient Indian architectural science emphasizing directional orientation in building design.
+
+## Vastu Principles Integration
+
+### 8-Direction System
+The application implements a complete 8-direction compass system:
+
+1. **North (N)** - Red color - Associated with career and opportunities
+2. **Northeast (NE)** - Orange color - Prayer room, spiritual energy
+3. **East (E)** - Amber color - New beginnings, sunrise energy
+4. **Southeast (SE)** - Lime color - Kitchen location, fire element
+5. **South (S)** - Emerald color - Fame and recognition
+6. **Southwest (SW)** - Cyan color - Master bedroom, stability
+7. **West (W)** - Violet color - Creativity and children
+8. **Northwest (NW)** - Fuchsia color - Air element, movement
+
+### Key Vastu Guidelines
+- **Entrance Placement**: Ideally in North, Northeast, or East directions
+- **Kitchen Location**: Southeast (preferred) or Northwest directions
+- **Master Bedroom**: Southwest for stability and prosperity
+- **Prayer Room**: Northeast for maximum spiritual energy
+- **Staircase Position**: Southwest, South, or West directions
+- **Living Room**: Northeast, North, or East for positive energy
+
+## Application Features for Vastu Analysis
+
+### Interactive Compass System
+- **[src/lib/compass-utils.ts](mdc:src/lib/compass-utils.ts)** - Contains direction calculations and color mappings
+- Draggable compass center for precise positioning
+- Colored directional lines extending to container edges
+- Real-time visual feedback for directional analysis
+
+### Layout Analysis Tools
+- Upload home layout images (floor plans, sketches)
+- Overlay compass on any layout for directional analysis
+- Visual identification of room positions relative to cardinal directions
+- Persistent storage of analyzed layouts
+
+## User Workflow
+1. **Upload Layout**: User uploads floor plan or layout image
+2. **Position Compass**: Drag compass center to appropriate reference point
+3. **Analyze Directions**: Use colored lines to identify room directions
+4. **Vastu Assessment**: Compare room positions with Vastu guidelines
+5. **Make Adjustments**: Plan modifications for better Vastu compliance
+
+## Technical Implementation
+- Mathematical precision in directional calculations
+- Color-coded system for easy direction identification
+- Responsive design for various screen sizes
+- Local storage for layout persistence
+- Touch-friendly interface for mobile analysis
+
+## Use Cases
+- **Homeowners**: Analyze existing home layouts
+- **Architects**: Incorporate Vastu principles in new designs
+- **Vastu Consultants**: Professional analysis tool
+- **Property Buyers**: Evaluate properties for Vastu compliance
+- **Interior Designers**: Plan arrangements according to Vastu

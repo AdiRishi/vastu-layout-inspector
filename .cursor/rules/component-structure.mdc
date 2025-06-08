@@ -1,0 +1,36 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Component Architecture
+
+## Core Components
+
+### Compass System
+The compass system is the heart of the application, providing interactive directional analysis:
+
+- **[src/components/compass/index.tsx](mdc:src/components/compass/index.tsx)** - Main compass component orchestrating all compass functionality
+- **[src/components/compass/compass-center.tsx](mdc:src/components/compass/compass-center.tsx)** - Draggable compass center point
+- **[src/components/compass/compass-lines.tsx](mdc:src/components/compass/compass-lines.tsx)** - Directional lines extending from center
+- **[src/components/compass/compass-labels.tsx](mdc:src/components/compass/compass-labels.tsx)** - Direction labels (N, NE, E, SE, S, SW, W, NW)
+
+### Layout Analysis
+Components for image analysis and user interaction:
+
+- **[src/components/layout-analysis/image-container.tsx](mdc:src/components/layout-analysis/image-container.tsx)** - Container for uploaded images with compass overlay
+- **[src/components/layout-analysis/analysis-header.tsx](mdc:src/components/layout-analysis/analysis-header.tsx)** - Control buttons (reset, remove image)
+- **[src/components/layout-analysis/instructions-panel.tsx](mdc:src/components/layout-analysis/instructions-panel.tsx)** - Usage instructions and guidance
+
+### Upload System
+- **[src/components/image-upload.tsx](mdc:src/components/image-upload.tsx)** - Image upload component with drag-and-drop
+
+### UI Components
+- **[src/components/ui/](mdc:src/components/ui)** - shadcn/ui components (Button, Card, etc.)
+
+## Component Patterns
+- All components use TypeScript with proper typing
+- Functional components with React hooks
+- Props are well-defined with TypeScript interfaces
+- Components follow single responsibility principle
+- Consistent naming convention with kebab-case files

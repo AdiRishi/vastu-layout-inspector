@@ -1,0 +1,68 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Styling & Design System
+
+## Styling Architecture
+
+### Tailwind CSS 4
+- **[src/app/globals.css](mdc:src/app/globals.css)** - Global styles with Tailwind imports and custom CSS variables
+- Uses CSS variables for dynamic theming
+- Custom utility classes for compass-specific styling
+- Responsive design with mobile-first approach
+
+### Color System
+The application uses a specific color palette for compass directions:
+
+```css
+- North (N): Red (#dc2626)
+- Northeast (NE): Orange (#ea580c)
+- East (E): Amber (#d97706)
+- Southeast (SE): Lime (#65a30d)
+- South (S): Emerald (#059669)
+- Southwest (SW): Cyan (#0891b2)
+- West (W): Violet (#7c3aed)
+- Northwest (NW): Fuchsia (#c026d3)
+```
+
+### Component Library
+- **shadcn/ui**: Modern, accessible component system
+- **Radix UI**: Unstyled, accessible primitives
+- **[components.json](mdc:components.json)** - shadcn/ui configuration
+- Components located in **[src/components/ui/](mdc:src/components/ui)**
+
+## Design Patterns
+
+### Layout Principles
+- Responsive grid system using CSS Grid and Flexbox
+- Container-based responsive design
+- Mobile-first responsive breakpoints
+- Accessible color contrast ratios
+
+### Interactive Elements
+- Hover states for interactive components
+- Focus states for keyboard navigation
+- Smooth transitions and animations
+- Touch-friendly sizing for mobile devices
+
+### Visual Hierarchy
+- Clear typography scale
+- Consistent spacing using Tailwind spacing units
+- Semantic color usage
+- Strategic use of shadows and borders
+
+## CSS Organization
+- Global styles in `globals.css`
+- Component-specific styles using Tailwind classes
+- Custom CSS variables for theming
+- Utility-first approach with Tailwind CSS
+- Consistent class naming and organization
+
+## Responsive Design
+- Mobile-first breakpoint system
+- Touch-optimized compass interaction
+- Adaptive image sizing
+- Responsive text scaling
+- Container query support where needed

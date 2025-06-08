@@ -1,0 +1,40 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Custom Hooks & Utilities
+
+## Custom Hooks
+The application uses several custom hooks for state management and functionality:
+
+### Core Hooks
+- **[src/hooks/use-drag.ts](mdc:src/hooks/use-drag.ts)** - Drag functionality for compass positioning with mouse and touch support
+- **[src/hooks/use-image-storage.ts](mdc:src/hooks/use-image-storage.ts)** - Local storage management for uploaded images with persistence
+- **[src/hooks/use-container-size.ts](mdc:src/hooks/use-container-size.ts)** - Container dimension tracking for responsive compass sizing
+- **[src/hooks/use-file-upload.ts](mdc:src/hooks/use-file-upload.ts)** - File upload handling with validation and error management
+- **[src/hooks/use-mobile.ts](mdc:src/hooks/use-mobile.ts)** - Mobile device detection for responsive behavior
+
+## Utility Functions
+
+### Compass Calculations
+- **[src/lib/compass-utils.ts](mdc:src/lib/compass-utils.ts)** - Mathematical calculations for compass directions, line positioning, and color mapping
+  - Direction constants and color mappings
+  - Line calculation functions for extending from center to edges
+  - Angle calculations for 8-direction compass (N, NE, E, SE, S, SW, W, NW)
+
+### General Utils
+- **[src/lib/utils.ts](mdc:src/lib/utils.ts)** - Utility functions including clsx/tailwind-merge helper
+
+## Hook Patterns
+- All hooks follow the `use-` naming convention
+- Return objects with descriptive property names
+- Handle cleanup and side effects properly
+- Provide proper TypeScript typing
+- Include error handling where appropriate
+
+## Key Features
+- **Drag System**: Smooth dragging with bounds checking and mobile support
+- **Storage Persistence**: Automatic image saving/loading with localStorage
+- **Responsive Calculations**: Dynamic sizing based on container dimensions
+- **Mathematical Precision**: Accurate directional line calculations for Vastu analysis
