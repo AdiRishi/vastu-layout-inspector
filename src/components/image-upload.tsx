@@ -8,7 +8,7 @@ interface ImageUploadProps {
   onImageRemove: () => void;
 }
 
-export default function ImageUpload({ onImageLoad, onImageRemove }: ImageUploadProps) {
+export default function ImageUpload({ onImageLoad }: ImageUploadProps) {
   const processImageFile = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
