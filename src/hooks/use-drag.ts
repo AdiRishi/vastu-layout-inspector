@@ -16,7 +16,8 @@ export function useDrag(
   elementRef: RefObject<HTMLElement | null>,
   initialPosition: Position,
   constraints?: DragConstraints,
-  resetKey: number = 0
+  resetKey: number = 0,
+  onPositionChange?: (position: Position) => void
 ) {
   const [position, setPosition] = useState<Position>(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
@@ -50,7 +51,9 @@ export function useDrag(
       newY = Math.max(constraints.minY, Math.min(constraints.maxY, newY));
     }
 
-    setPosition({ x: newX, y: newY });
+    const newPosition = { x: newX, y: newY };
+    setPosition(newPosition);
+    onPositionChange?.(newPosition);
   };
 
   const handleMouseUp = () => {
@@ -72,6 +75,7 @@ export function useDrag(
   // Update position when initialPosition changes
   useEffect(() => {
     setPosition(initialPosition);
+    onPositionChange?.(initialPosition);
   }, [initialPosition.x, initialPosition.y, resetKey]);
 
   return {

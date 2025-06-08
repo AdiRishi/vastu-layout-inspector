@@ -8,10 +8,24 @@ interface ImageContainerProps {
   resetKey: number;
   rotation: number;
   onRotationChange: (newAngle: number) => void;
+  onPositionChange?: (position: { x: number; y: number }) => void;
+  initialCompassPosition: { x: number; y: number };
 }
 
 const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
-  ({ imageSrc, containerWidth, containerHeight, resetKey, rotation, onRotationChange }, ref) => {
+  (
+    {
+      imageSrc,
+      containerWidth,
+      containerHeight,
+      resetKey,
+      rotation,
+      onRotationChange,
+      onPositionChange,
+      initialCompassPosition,
+    },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
@@ -39,11 +53,12 @@ const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
         <Compass
           containerWidth={containerWidth}
           containerHeight={containerHeight}
-          initialX={containerWidth / 2}
-          initialY={containerHeight / 2}
+          initialX={initialCompassPosition.x}
+          initialY={initialCompassPosition.y}
           resetKey={resetKey}
           rotation={rotation}
           onRotationChange={onRotationChange}
+          onPositionChange={onPositionChange}
         />
       </div>
     );

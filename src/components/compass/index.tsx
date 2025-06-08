@@ -17,6 +17,7 @@ interface CompassProps {
   resetKey: number;
   rotation: number;
   onRotationChange: (newAngle: number) => void;
+  onPositionChange?: (position: { x: number; y: number }) => void;
 }
 
 export default function Compass({
@@ -27,6 +28,7 @@ export default function Compass({
   resetKey,
   rotation,
   onRotationChange,
+  onPositionChange,
 }: CompassProps) {
   const compassRef = useRef<HTMLDivElement>(null);
   const stableContainerRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,8 @@ export default function Compass({
       minY: COMPASS_SIZE / 2,
       maxY: containerHeight - COMPASS_SIZE / 2,
     },
-    resetKey
+    resetKey,
+    onPositionChange
   );
 
   const { handleMouseDown: handleRotateMouseDown } = useRotation(stableContainerRef, position, onRotationChange);

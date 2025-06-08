@@ -6,32 +6,38 @@ import ImageContainer from '@/components/layout-analysis/image-container';
 import InstructionsPanel from '@/components/layout-analysis/instructions-panel';
 import { useContainerSize } from '@/hooks/use-container-size';
 import { useImageStorage } from '@/hooks/use-image-storage';
+import { useLayoutConfigStorage } from '@/hooks/use-layout-config-storage';
 import { toPng } from 'html-to-image';
 import { useCallback, useRef, useState } from 'react';
 
 export default function Home() {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const [resetKey, setResetKey] = useState(0);
-  const [rotation, setRotation] = useState(0);
   const { imageData, saveImage, clearStoredImage } = useImageStorage();
+  const { rotation, compassPosition, isRestored, saveRotation, saveCompassPosition, clearStoredLayoutConfig } =
+    useLayoutConfigStorage();
   const containerSize = useContainerSize(imageContainerRef, [imageData]);
 
   const handleImageLoad = (src: string, width: number, height: number) => {
     saveImage(src, width, height);
+    clearStoredLayoutConfig(); // Reset layout when new image is loaded
   };
 
   const handleImageRemove = () => {
     clearStoredImage();
+    clearStoredLayoutConfig();
   };
 
   const handleResetCompass = () => {
     // Increment reset key to force compass to re-render with initial position
     setResetKey((prev) => prev + 1);
-    setRotation(0);
+    saveRotation(0);
+    // Clearing position will reset it to center
+    saveCompassPosition({ x: containerSize.width / 2, y: containerSize.height / 2 });
   };
 
   const handleRotationChange = (newAngle: number) => {
-    setRotation(newAngle);
+    saveRotation(newAngle);
   };
 
   const handleDownloadImage = useCallback(() => {
@@ -50,6 +56,21 @@ export default function Home() {
         console.error('oops, something went wrong!', err);
       });
   }, [imageContainerRef]);
+
+  const getInitialCompassPosition = () => {
+    if (compassPosition) {
+      return compassPosition;
+    }
+    if (containerSize.width && containerSize.height) {
+      return { x: containerSize.width / 2, y: containerSize.height / 2 };
+    }
+    // Default fallback, though containerSize should be available
+    return { x: 250, y: 250 };
+  };
+
+  if (!isRestored) {
+    return null; // or a loading spinner
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4">
@@ -81,6 +102,8 @@ export default function Home() {
               resetKey={resetKey}
               rotation={rotation}
               onRotationChange={handleRotationChange}
+              onPositionChange={saveCompassPosition}
+              initialCompassPosition={getInitialCompassPosition()}
             />
 
             <InstructionsPanel />
