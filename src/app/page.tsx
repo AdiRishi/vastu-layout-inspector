@@ -6,14 +6,15 @@ import ImageContainer from '@/components/layout-analysis/image-container';
 import InstructionsPanel from '@/components/layout-analysis/instructions-panel';
 import { useContainerSize } from '@/hooks/use-container-size';
 import { useImageStorage } from '@/hooks/use-image-storage';
-import { useRef, useState } from 'react';
+import { toPng } from 'html-to-image';
+import { useCallback, useRef, useState } from 'react';
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
   const [resetKey, setResetKey] = useState(0);
   const [rotation, setRotation] = useState(0);
   const { imageData, saveImage, clearStoredImage } = useImageStorage();
-  const containerSize = useContainerSize(containerRef, [imageData]);
+  const containerSize = useContainerSize(imageContainerRef, [imageData]);
 
   const handleImageLoad = (src: string, width: number, height: number) => {
     saveImage(src, width, height);
@@ -33,6 +34,23 @@ export default function Home() {
     setRotation(newAngle);
   };
 
+  const handleDownloadImage = useCallback(() => {
+    if (imageContainerRef.current === null) {
+      return;
+    }
+
+    toPng(imageContainerRef.current, { cacheBust: true })
+      .then((dataUrl: string) => {
+        const link = document.createElement('a');
+        link.download = 'vastu-layout.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err: Error) => {
+        console.error('oops, something went wrong!', err);
+      });
+  }, [imageContainerRef]);
+
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="mx-auto max-w-7xl">
@@ -50,12 +68,13 @@ export default function Home() {
             <AnalysisHeader
               onResetCompass={handleResetCompass}
               onRemoveImage={handleImageRemove}
+              onDownloadImage={handleDownloadImage}
               rotation={rotation}
               onRotationChange={handleRotationChange}
             />
 
             <ImageContainer
-              ref={containerRef}
+              ref={imageContainerRef}
               imageSrc={imageData.src}
               containerWidth={containerSize.width}
               containerHeight={containerSize.height}
