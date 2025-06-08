@@ -18,10 +18,10 @@ export default function CompassLines({ position, containerWidth, containerHeight
             y1={position.y}
             x2={endPoint.x}
             y2={endPoint.y}
-            stroke="#3b82f6"
-            strokeWidth="2"
-            strokeDasharray="5,5"
-            opacity="0.7"
+            stroke={direction.strokeColor}
+            strokeWidth="3"
+            strokeDasharray="8,4"
+            opacity="0.8"
           />
         );
       })}

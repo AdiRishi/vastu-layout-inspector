@@ -6,10 +6,11 @@ import ImageContainer from '@/components/layout-analysis/image-container';
 import InstructionsPanel from '@/components/layout-analysis/instructions-panel';
 import { useContainerSize } from '@/hooks/use-container-size';
 import { useImageStorage } from '@/hooks/use-image-storage';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [resetKey, setResetKey] = useState(0);
   const { imageData, saveImage, clearStoredImage } = useImageStorage();
   const containerSize = useContainerSize(containerRef, [imageData]);
 
@@ -22,10 +23,8 @@ export default function Home() {
   };
 
   const handleResetCompass = () => {
-    // Force re-render of compass by updating image data
-    if (imageData) {
-      saveImage(imageData.src, imageData.width, imageData.height);
-    }
+    // Increment reset key to force compass to re-render with initial position
+    setResetKey((prev) => prev + 1);
   };
 
   return (
@@ -49,7 +48,7 @@ export default function Home() {
               imageSrc={imageData.src}
               containerWidth={containerSize.width}
               containerHeight={containerSize.height}
-              onSizeChange={() => {}} // Not needed anymore as we use the hook
+              resetKey={resetKey}
             />
 
             <InstructionsPanel />

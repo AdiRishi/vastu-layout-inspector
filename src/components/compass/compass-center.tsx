@@ -11,7 +11,7 @@ const CompassCenter = forwardRef<HTMLDivElement, CompassCenterProps>(({ position
   return (
     <div
       ref={ref}
-      className="pointer-events-auto absolute flex cursor-move items-center justify-center rounded-full border-4 border-blue-500 bg-white shadow-lg"
+      className="pointer-events-auto absolute flex cursor-move items-center justify-center rounded-full border-2 border-blue-500 bg-white/80 shadow-md hover:bg-white/90"
       style={{
         width: COMPASS_SIZE,
         height: COMPASS_SIZE,

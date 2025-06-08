@@ -5,11 +5,11 @@ interface ImageContainerProps {
   imageSrc: string;
   containerWidth: number;
   containerHeight: number;
-  onSizeChange: (width: number, height: number) => void;
+  resetKey: number;
 }
 
 const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
-  ({ imageSrc, containerWidth, containerHeight }, ref) => {
+  ({ imageSrc, containerWidth, containerHeight, resetKey }, ref) => {
     return (
       <div
         ref={ref}
@@ -39,7 +39,7 @@ const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
           containerHeight={containerHeight}
           initialX={containerWidth / 2}
           initialY={containerHeight / 2}
-          key={`${containerWidth}-${containerHeight}`}
+          key={`${containerWidth}-${containerHeight}-${resetKey}`}
         />
       </div>
     );

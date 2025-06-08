@@ -2,6 +2,8 @@ export interface Direction {
   angle: number;
   label: string;
   name: string;
+  color: string;
+  strokeColor: string;
 }
 
 export interface Position {
@@ -10,17 +12,17 @@ export interface Position {
 }
 
 export const COMPASS_DIRECTIONS: Direction[] = [
-  { angle: 0, label: 'N', name: 'North' },
-  { angle: 45, label: 'NE', name: 'Northeast' },
-  { angle: 90, label: 'E', name: 'East' },
-  { angle: 135, label: 'SE', name: 'Southeast' },
-  { angle: 180, label: 'S', name: 'South' },
-  { angle: 225, label: 'SW', name: 'Southwest' },
-  { angle: 270, label: 'W', name: 'West' },
-  { angle: 315, label: 'NW', name: 'Northwest' },
+  { angle: 0, label: 'N', name: 'North', color: '#dc2626', strokeColor: '#dc2626' }, // Red
+  { angle: 45, label: 'NE', name: 'Northeast', color: '#ea580c', strokeColor: '#ea580c' }, // Orange
+  { angle: 90, label: 'E', name: 'East', color: '#d97706', strokeColor: '#d97706' }, // Amber
+  { angle: 135, label: 'SE', name: 'Southeast', color: '#65a30d', strokeColor: '#65a30d' }, // Lime
+  { angle: 180, label: 'S', name: 'South', color: '#059669', strokeColor: '#059669' }, // Emerald
+  { angle: 225, label: 'SW', name: 'Southwest', color: '#0891b2', strokeColor: '#0891b2' }, // Cyan
+  { angle: 270, label: 'W', name: 'West', color: '#7c3aed', strokeColor: '#7c3aed' }, // Violet
+  { angle: 315, label: 'NW', name: 'Northwest', color: '#c026d3', strokeColor: '#c026d3' }, // Fuchsia
 ];
 
-export const COMPASS_SIZE = 60;
+export const COMPASS_SIZE = 32;
 
 /**
  * Calculate the end point of a compass line that extends to the container edge
@@ -94,7 +96,7 @@ export function calculateLineEndPoint(
 export function calculateLabelPosition(
   angle: number,
   compassPosition: Position,
-  distance: number = COMPASS_SIZE / 2 + 30
+  distance: number = COMPASS_SIZE / 2 + 24
 ): Position {
   const radians = (angle - 90) * (Math.PI / 180);
   return {
