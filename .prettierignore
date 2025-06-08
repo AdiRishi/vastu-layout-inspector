@@ -1,0 +1,30 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/.next
+**/.nuxt
+**/.output
+**/dist
+**/functions/*.js
+**/functions/*.js.map
+**/functions/metafile.*.json
+.react-email
+.vscode
+.wrangler
+playwright-report
+**/coverage
+.yarn
+*.hbs
+**/public/build
+.cache
+pnpm-lock.yaml
+.react-router
+
+# Ignore due to bug in prettier - tries to search for active node_modules with tailwindcss-animate for formatting the file
+turbo/generators/templates/remix-shadcn-template/app/global-styles/tailwind.css
+turbo/generators/templates/nuxt-minimal-template/*
+
+# Ignore vitepress docs
+**/.vitepress/cache
+**/.vitepress/dist
