@@ -1,7 +1,7 @@
 'use client';
 
-import { Upload, X } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useFileUpload } from '@/hooks/use-file-upload';
+import { Upload } from 'lucide-react';
 
 interface ImageUploadProps {
   onImageLoad: (imageSrc: string, width: number, height: number) => void;
@@ -9,59 +9,26 @@ interface ImageUploadProps {
 }
 
 export default function ImageUpload({ onImageLoad, onImageRemove }: ImageUploadProps) {
-  const [dragOver, setDragOver] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const processImageFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageSrc = e.target?.result as string;
 
-  const handleFileSelect = (file: File) => {
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const imageSrc = e.target?.result as string;
-
-        // Create an image element to get dimensions
-        const img = new Image();
-        img.onload = () => {
-          onImageLoad(imageSrc, img.width, img.height);
-        };
-        img.src = imageSrc;
+      // Create an image element to get dimensions
+      const img = new Image();
+      img.onload = () => {
+        onImageLoad(imageSrc, img.width, img.height);
       };
-      reader.readAsDataURL(file);
-    }
+      img.src = imageSrc;
+    };
+    reader.readAsDataURL(file);
   };
 
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) {
-      handleFileSelect(files[0]);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-  };
-
-  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      handleFileSelect(files[0]);
-    }
-  };
-
-  const handleRemoveImage = () => {
-    onImageRemove();
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
+  const { dragOver, fileInputRef, handleDrop, handleDragOver, handleDragLeave, handleFileInputChange, openFileDialog } =
+    useFileUpload({
+      onFileSelect: processImageFile,
+      acceptedTypes: ['image/*'],
+    });
 
   return (
     <div className="h-full w-full">
@@ -70,7 +37,7 @@ export default function ImageUpload({ onImageLoad, onImageRemove }: ImageUploadP
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={openFileDialog}
       >
         <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
         <p className="mb-2 text-lg font-medium text-gray-700">Drop your image here, or click to browse</p>
