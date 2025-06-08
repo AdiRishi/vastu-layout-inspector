@@ -96,11 +96,38 @@ export function calculateLineEndPoint(
 export function calculateLabelPosition(
   angle: number,
   compassPosition: Position,
-  distance: number = COMPASS_SIZE / 2 + 24
+  containerWidth: number,
+  containerHeight: number,
+  offset: number = 40
 ): Position {
-  const radians = (angle - 90) * (Math.PI / 180);
+  // Calculate the point on the container edge
+  const edgePoint = calculateLineEndPoint(angle, compassPosition, containerWidth, containerHeight);
+
+  // Vector from compass center to the edge point
+  const vectorX = edgePoint.x - compassPosition.x;
+  const vectorY = edgePoint.y - compassPosition.y;
+
+  // Length of the vector (distance to the edge)
+  const length = Math.sqrt(vectorX * vectorX + vectorY * vectorY);
+
+  // Avoid division by zero if length is 0
+  if (length === 0) {
+    return compassPosition;
+  }
+
+  // Normalized direction vector
+  const unitVectorX = vectorX / length;
+  const unitVectorY = vectorY / length;
+
+  // New length, pulled back from the edge by the offset
+  const newLength = length - offset;
+
+  // Calculate the new position
+  const newX = compassPosition.x + unitVectorX * newLength;
+  const newY = compassPosition.y + unitVectorY * newLength;
+
   return {
-    x: compassPosition.x + Math.cos(radians) * distance,
-    y: compassPosition.y + Math.sin(radians) * distance,
+    x: newX,
+    y: newY,
   };
 }

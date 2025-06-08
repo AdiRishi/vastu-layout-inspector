@@ -2,13 +2,15 @@ import { COMPASS_DIRECTIONS, calculateLabelPosition, type Position } from '@/lib
 
 interface CompassLabelsProps {
   position: Position;
+  containerWidth: number;
+  containerHeight: number;
 }
 
-export default function CompassLabels({ position }: CompassLabelsProps) {
+export default function CompassLabels({ position, containerWidth, containerHeight }: CompassLabelsProps) {
   return (
     <>
       {COMPASS_DIRECTIONS.map((direction) => {
-        const labelPos = calculateLabelPosition(direction.angle, position);
+        const labelPos = calculateLabelPosition(direction.angle, position, containerWidth, containerHeight);
 
         return (
           <div

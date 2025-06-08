@@ -34,7 +34,7 @@ export default function Compass({ containerWidth, containerHeight, initialX = 50
 
       <CompassCenter ref={compassRef} position={position} onMouseDown={handleMouseDown} />
 
-      <CompassLabels position={position} />
+      <CompassLabels position={position} containerWidth={containerWidth} containerHeight={containerHeight} />
     </div>
   );
 }
