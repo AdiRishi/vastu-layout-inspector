@@ -29,7 +29,7 @@ export default function Compass({ containerWidth, containerHeight, initialX = 50
   );
 
   return (
-    <div className="pointer-events-none absolute inset-0">
+    <div className="pointer-events-none absolute inset-0 select-none">
       <CompassLines position={position} containerWidth={containerWidth} containerHeight={containerHeight} />
 
       <CompassCenter ref={compassRef} position={position} onMouseDown={handleMouseDown} />

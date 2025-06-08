@@ -13,7 +13,7 @@ const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
     return (
       <div
         ref={ref}
-        className="relative overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-100"
+        className="relative overflow-hidden rounded-lg border-2 border-gray-200 bg-gray-100 select-none"
         style={{
           width: '100%',
           height: '70vh',
@@ -23,8 +23,15 @@ const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
         <img
           src={imageSrc}
           alt="Uploaded layout"
-          className="h-full w-full object-contain"
-          style={{ imageRendering: 'crisp-edges' }}
+          className="h-full w-full object-contain select-none"
+          style={{
+            imageRendering: 'crisp-edges',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+          }}
+          draggable={false}
         />
 
         <Compass
