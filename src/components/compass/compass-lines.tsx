@@ -4,13 +4,14 @@ interface CompassLinesProps {
   position: Position;
   containerWidth: number;
   containerHeight: number;
+  rotation: number;
 }
 
-export default function CompassLines({ position, containerWidth, containerHeight }: CompassLinesProps) {
+export default function CompassLines({ position, containerWidth, containerHeight, rotation }: CompassLinesProps) {
   return (
     <svg width={containerWidth} height={containerHeight} className="absolute inset-0" style={{ pointerEvents: 'none' }}>
       {COMPASS_DIRECTIONS.map((direction) => {
-        const endPoint = calculateLineEndPoint(direction.angle, position, containerWidth, containerHeight);
+        const endPoint = calculateLineEndPoint(direction.angle + rotation, position, containerWidth, containerHeight);
         return (
           <line
             key={direction.label}

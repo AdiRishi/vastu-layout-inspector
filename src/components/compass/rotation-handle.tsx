@@ -3,15 +3,20 @@ import { type Position } from '@/lib/compass-utils';
 interface RotationHandleProps {
   position: Position;
   onMouseDown: (e: React.MouseEvent) => void;
+  rotation: number;
 }
 
 const HANDLE_OFFSET = 40; // The distance from the center of the compass
 
-export default function RotationHandle({ position, onMouseDown }: RotationHandleProps) {
+export default function RotationHandle({ position, onMouseDown, rotation }: RotationHandleProps) {
+  const angleRad = (rotation - 90) * (Math.PI / 180);
+  const x = position.x + HANDLE_OFFSET * Math.cos(angleRad);
+  const y = position.y + HANDLE_OFFSET * Math.sin(angleRad);
+
   const handleStyle: React.CSSProperties = {
     position: 'absolute',
-    left: position.x,
-    top: position.y - HANDLE_OFFSET,
+    left: x,
+    top: y,
     transform: 'translate(-50%, -50%)',
     width: '20px',
     height: '20px',

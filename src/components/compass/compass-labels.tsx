@@ -4,13 +4,14 @@ interface CompassLabelsProps {
   position: Position;
   containerWidth: number;
   containerHeight: number;
+  rotation: number;
 }
 
-export default function CompassLabels({ position, containerWidth, containerHeight }: CompassLabelsProps) {
+export default function CompassLabels({ position, containerWidth, containerHeight, rotation }: CompassLabelsProps) {
   return (
     <>
       {COMPASS_DIRECTIONS.map((direction) => {
-        const labelPos = calculateLabelPosition(direction.angle, position, containerWidth, containerHeight);
+        const labelPos = calculateLabelPosition(direction.angle + rotation, position, containerWidth, containerHeight);
 
         return (
           <div

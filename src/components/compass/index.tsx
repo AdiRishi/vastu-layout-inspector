@@ -49,17 +49,29 @@ export default function Compass({
     <div ref={stableContainerRef} className="pointer-events-none absolute inset-0 select-none">
       <div
         className="absolute inset-0"
-        style={{
-          transform: `rotate(${rotation}deg)`,
-          transformOrigin: `${position.x}px ${position.y}px`,
-        }}
+        style={
+          {
+            // transform: `rotate(${rotation}deg)`,
+            // transformOrigin: `${position.x}px ${position.y}px`,
+          }
+        }
       >
-        <CompassLines position={position} containerWidth={containerWidth} containerHeight={containerHeight} />
+        <CompassLines
+          position={position}
+          containerWidth={containerWidth}
+          containerHeight={containerHeight}
+          rotation={rotation}
+        />
 
         <CompassCenter ref={compassRef} position={position} onMouseDown={handleDragMouseDown} />
-        <RotationHandle position={position} onMouseDown={handleRotateMouseDown} />
+        <RotationHandle position={position} onMouseDown={handleRotateMouseDown} rotation={rotation} />
 
-        <CompassLabels position={position} containerWidth={containerWidth} containerHeight={containerHeight} />
+        <CompassLabels
+          position={position}
+          containerWidth={containerWidth}
+          containerHeight={containerHeight}
+          rotation={rotation}
+        />
       </div>
     </div>
   );
