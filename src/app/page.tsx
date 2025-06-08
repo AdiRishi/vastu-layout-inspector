@@ -11,6 +11,7 @@ import { useRef, useState } from 'react';
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [resetKey, setResetKey] = useState(0);
+  const [rotation, setRotation] = useState(0);
   const { imageData, saveImage, clearStoredImage } = useImageStorage();
   const containerSize = useContainerSize(containerRef, [imageData]);
 
@@ -25,6 +26,11 @@ export default function Home() {
   const handleResetCompass = () => {
     // Increment reset key to force compass to re-render with initial position
     setResetKey((prev) => prev + 1);
+    setRotation(0);
+  };
+
+  const handleRotationChange = (newAngle: number) => {
+    setRotation(newAngle);
   };
 
   return (
@@ -41,7 +47,12 @@ export default function Home() {
           </div>
         ) : (
           <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-            <AnalysisHeader onResetCompass={handleResetCompass} onRemoveImage={handleImageRemove} />
+            <AnalysisHeader
+              onResetCompass={handleResetCompass}
+              onRemoveImage={handleImageRemove}
+              rotation={rotation}
+              onRotationChange={handleRotationChange}
+            />
 
             <ImageContainer
               ref={containerRef}
@@ -49,6 +60,8 @@ export default function Home() {
               containerWidth={containerSize.width}
               containerHeight={containerSize.height}
               resetKey={resetKey}
+              rotation={rotation}
+              onRotationChange={handleRotationChange}
             />
 
             <InstructionsPanel />

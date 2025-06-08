@@ -6,10 +6,12 @@ interface ImageContainerProps {
   containerWidth: number;
   containerHeight: number;
   resetKey: number;
+  rotation: number;
+  onRotationChange: (newAngle: number) => void;
 }
 
 const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
-  ({ imageSrc, containerWidth, containerHeight, resetKey }, ref) => {
+  ({ imageSrc, containerWidth, containerHeight, resetKey, rotation, onRotationChange }, ref) => {
     return (
       <div
         ref={ref}
@@ -39,7 +41,9 @@ const ImageContainer = forwardRef<HTMLDivElement, ImageContainerProps>(
           containerHeight={containerHeight}
           initialX={containerWidth / 2}
           initialY={containerHeight / 2}
-          key={`${containerWidth}-${containerHeight}-${resetKey}`}
+          resetKey={resetKey}
+          rotation={rotation}
+          onRotationChange={onRotationChange}
         />
       </div>
     );

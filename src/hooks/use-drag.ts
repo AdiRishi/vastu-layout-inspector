@@ -15,7 +15,8 @@ interface DragConstraints {
 export function useDrag(
   elementRef: RefObject<HTMLElement | null>,
   initialPosition: Position,
-  constraints?: DragConstraints
+  constraints?: DragConstraints,
+  resetKey: number = 0
 ) {
   const [position, setPosition] = useState<Position>(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
@@ -71,11 +72,12 @@ export function useDrag(
   // Update position when initialPosition changes
   useEffect(() => {
     setPosition(initialPosition);
-  }, [initialPosition.x, initialPosition.y]);
+  }, [initialPosition.x, initialPosition.y, resetKey]);
 
   return {
     position,
     isDragging,
     handleMouseDown,
+    setPosition,
   };
 }
