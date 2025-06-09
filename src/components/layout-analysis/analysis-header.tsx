@@ -46,9 +46,9 @@ export default function AnalysisHeader({
             id="rotation-input"
             type="number"
             className="w-24"
-            value={Math.round(rotation)}
+            value={rotation.toFixed(1)}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => onRotationChange(Number(e.target.value))}
-            step="1"
+            step="0.1"
             min="-180"
             max="180"
           />
