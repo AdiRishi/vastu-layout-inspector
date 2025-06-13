@@ -1,7 +1,10 @@
 'use client';
 
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
+import { useClipboardImage } from '@/hooks/use-clipboard-image';
 import { useFileUpload } from '@/hooks/use-file-upload';
-import { Upload } from 'lucide-react';
+import { useImageProcessor } from '@/hooks/use-image-processor';
+import { Clipboard, Upload } from 'lucide-react';
 
 interface ImageUploadProps {
   onImageLoad: (imageSrc: string, width: number, height: number) => void;
@@ -9,19 +12,11 @@ interface ImageUploadProps {
 }
 
 export default function ImageUpload({ onImageLoad }: ImageUploadProps) {
-  const processImageFile = (file: File) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageSrc = e.target?.result as string;
+  const { processImageFile } = useImageProcessor(onImageLoad);
+  const { pasteImageFromClipboard } = useClipboardImage();
 
-      // Create an image element to get dimensions
-      const img = new Image();
-      img.onload = () => {
-        onImageLoad(imageSrc, img.width, img.height);
-      };
-      img.src = imageSrc;
-    };
-    reader.readAsDataURL(file);
+  const handlePasteFromClipboard = () => {
+    pasteImageFromClipboard(processImageFile);
   };
 
   const { dragOver, fileInputRef, handleDrop, handleDragOver, handleDragLeave, handleFileInputChange, openFileDialog } =
@@ -32,19 +27,39 @@ export default function ImageUpload({ onImageLoad }: ImageUploadProps) {
 
   return (
     <div className="h-full w-full">
-      <div
-        className={`cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors ${dragOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'} `}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onClick={openFileDialog}
-      >
-        <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-        <p className="mb-2 text-lg font-medium text-gray-700">Drop your image here, or click to browse</p>
-        <p className="text-sm text-gray-500">Supports JPG, PNG, GIF, WebP</p>
+      <ContextMenu>
+        <ContextMenuTrigger asChild>
+          <div
+            className={`cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors ${dragOver ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'} `}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onClick={openFileDialog}
+          >
+            <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+            <p className="mb-2 text-lg font-medium text-gray-700">Drop your image here, or click to browse</p>
+            <p className="text-sm text-gray-500">Supports JPG, PNG, GIF, WebP</p>
 
-        <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileInputChange} className="hidden" />
-      </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileInputChange}
+              className="hidden"
+            />
+          </div>
+        </ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem onClick={openFileDialog}>
+            <Upload className="mr-2 h-4 w-4" />
+            Browse Files
+          </ContextMenuItem>
+          <ContextMenuItem onClick={handlePasteFromClipboard}>
+            <Clipboard className="mr-2 h-4 w-4" />
+            Paste from Clipboard
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
     </div>
   );
 }
