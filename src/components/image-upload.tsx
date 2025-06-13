@@ -13,7 +13,10 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ onImageLoad }: ImageUploadProps) {
   const { processImageFile } = useImageProcessor(onImageLoad);
-  const { pasteImageFromClipboard } = useClipboardImage();
+  const { pasteImageFromClipboard } = useClipboardImage({
+    onImageSelect: processImageFile,
+    enableKeyboardShortcut: true,
+  });
 
   const handlePasteFromClipboard = () => {
     pasteImageFromClipboard(processImageFile);
@@ -38,7 +41,9 @@ export default function ImageUpload({ onImageLoad }: ImageUploadProps) {
           >
             <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
             <p className="mb-2 text-lg font-medium text-gray-700">Drop your image here, or click to browse</p>
-            <p className="text-sm text-gray-500">Supports JPG, PNG, GIF, WebP</p>
+            <p className="text-sm text-gray-500">
+              Supports JPG, PNG, GIF, WebP • Right-click for options • Ctrl+V to paste
+            </p>
 
             <input
               ref={fileInputRef}
