@@ -9,11 +9,15 @@ alwaysApply: false
 The application uses several custom hooks for state management and functionality:
 
 ### Core Hooks
-- **[src/hooks/use-drag.ts](mdc:src/hooks/use-drag.ts)** - Drag functionality for compass positioning with mouse and touch support
-- **[src/hooks/use-image-storage.ts](mdc:src/hooks/use-image-storage.ts)** - Local storage management for uploaded images with persistence
+- **[src/hooks/use-clipboard-image.ts](mdc:src/hooks/use-clipboard-image.ts)** - Clipboard image paste functionality with validation
 - **[src/hooks/use-container-size.ts](mdc:src/hooks/use-container-size.ts)** - Container dimension tracking for responsive compass sizing
+- **[src/hooks/use-drag.ts](mdc:src/hooks/use-drag.ts)** - Drag functionality for compass positioning with mouse and touch support
 - **[src/hooks/use-file-upload.ts](mdc:src/hooks/use-file-upload.ts)** - File upload handling with validation and error management
+- **[src/hooks/use-image-processor.ts](mdc:src/hooks/use-image-processor.ts)** - Image processing and optimization utilities
+- **[src/hooks/use-image-storage.ts](mdc:src/hooks/use-image-storage.ts)** - Local storage management for uploaded images with persistence
+- **[src/hooks/use-layout-config-storage.ts](mdc:src/hooks/use-layout-config-storage.ts)** - Layout configuration persistence and management
 - **[src/hooks/use-mobile.ts](mdc:src/hooks/use-mobile.ts)** - Mobile device detection for responsive behavior
+- **[src/hooks/use-rotation.ts](mdc:src/hooks/use-rotation.ts)** - Compass rotation functionality with angle management
 
 ## Utility Functions
 
@@ -34,7 +38,10 @@ The application uses several custom hooks for state management and functionality
 - Include error handling where appropriate
 
 ## Key Features
+- **Clipboard Integration**: Direct image paste from clipboard with validation
 - **Drag System**: Smooth dragging with bounds checking and mobile support
-- **Storage Persistence**: Automatic image saving/loading with localStorage
-- **Responsive Calculations**: Dynamic sizing based on container dimensions
+- **Rotation Control**: Compass rotation with precise angle management
+- **Image Processing**: Automatic optimization and processing of uploaded images
+- **Storage Persistence**: Automatic image and configuration saving/loading with localStorage
+- **Responsive Calculations**: Dynamic sizing based on container dimensions and mobile detection
 - **Mathematical Precision**: Accurate directional line calculations for Vastu analysis

@@ -6,11 +6,13 @@ A modern web application for analyzing home layouts according to Vastu Shastra p
 
 - **Image Upload & Storage**: Upload home layout images with automatic local storage persistence
 - **Interactive Compass Overlay**: Draggable compass that overlays directional lines on your layout
+- **Compass Rotation**: Adjustable compass orientation with rotation handle for precise alignment
 - **8-Direction Analysis**: Complete compass with North, Northeast, East, Southeast, South, Southwest, West, and Northwest directions
 - **Color-Coded Directions**: Each direction has a unique color for easy identification
 - **Precise Alignment**: Directional lines extend to container edges for accurate spatial analysis
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Local Persistence**: Images are automatically saved locally and restored on page refresh
+- **Clipboard Image Support**: Paste images directly from clipboard for quick analysis
+- **Responsive Design**: Works seamlessly on desktop and mobile devices with mobile-optimized controls
+- **Local Persistence**: Images and layout configurations are automatically saved locally and restored on page refresh
 
 ## 🧭 How It Works
 
@@ -82,13 +84,15 @@ vastu-layout-inspector/
 │   ├── app/
 │   │   ├── globals.css      # Global styles and Tailwind CSS
 │   │   ├── layout.tsx       # Root layout component
-│   │   └── page.tsx         # Main application page
+│   │   ├── page.tsx         # Main application page
+│   │   └── favicon.ico      # Application favicon
 │   ├── components/
 │   │   ├── compass/         # Compass overlay components
 │   │   │   ├── index.tsx           # Main compass component
 │   │   │   ├── compass-center.tsx  # Draggable compass center
 │   │   │   ├── compass-lines.tsx   # Directional lines overlay
-│   │   │   └── compass-labels.tsx  # Direction labels
+│   │   │   ├── compass-labels.tsx  # Direction labels
+│   │   │   └── rotation-handle.tsx # Compass rotation control
 │   │   ├── layout-analysis/ # Image analysis components
 │   │   │   ├── analysis-header.tsx    # Control buttons header
 │   │   │   ├── image-container.tsx    # Image display container
@@ -96,13 +100,21 @@ vastu-layout-inspector/
 │   │   ├── image-upload.tsx # Image upload component
 │   │   └── ui/              # Reusable UI components (shadcn/ui)
 │   ├── hooks/
-│   │   ├── use-container-size.ts  # Container dimension management
-│   │   ├── use-drag.ts           # Drag functionality for compass
-│   │   └── use-image-storage.ts  # Local storage for images
+│   │   ├── use-clipboard-image.ts     # Clipboard image paste functionality
+│   │   ├── use-container-size.ts      # Container dimension management
+│   │   ├── use-drag.ts               # Drag functionality for compass
+│   │   ├── use-file-upload.ts        # File upload handling
+│   │   ├── use-image-processor.ts    # Image processing utilities
+│   │   ├── use-image-storage.ts      # Local storage for images
+│   │   ├── use-layout-config-storage.ts # Layout configuration persistence
+│   │   ├── use-mobile.ts             # Mobile device detection
+│   │   └── use-rotation.ts           # Compass rotation functionality
 │   └── lib/
-│       └── compass-utils.ts      # Compass calculations and constants
+│       ├── compass-utils.ts      # Compass calculations and constants
+│       └── utils.ts             # General utility functions
 ├── public/                  # Static assets
 ├── package.json
+├── pnpm-workspace.yaml      # pnpm workspace configuration
 └── README.md
 ```
 
@@ -125,8 +137,12 @@ vastu-layout-inspector/
 ### Features & Utilities
 
 - **Custom Drag System** - Smooth dragging for compass positioning
-- **Local Storage API** - Image persistence across sessions
-- **Responsive Hooks** - Container size management
+- **Compass Rotation** - Adjustable compass orientation with rotation controls
+- **Clipboard Integration** - Direct image paste from clipboard
+- **File Upload System** - Drag & drop and file selection support
+- **Image Processing** - Automatic image optimization and processing
+- **Local Storage API** - Image and configuration persistence across sessions
+- **Responsive Hooks** - Container size management and mobile detection
 - **Mathematical Calculations** - Precise directional line calculations
 
 ### Development Tools
@@ -139,9 +155,10 @@ vastu-layout-inspector/
 
 ### Step 1: Upload Your Layout Image
 
-1. Click on the upload area or drag and drop an image file
-2. Supported formats: JPG, PNG, GIF, WebP
-3. Your image will be automatically saved locally for future sessions
+1. **File Upload**: Click on the upload area or drag and drop an image file
+2. **Clipboard Paste**: Press Ctrl+V (Cmd+V on Mac) to paste an image from clipboard
+3. **Supported Formats**: JPG, PNG, GIF, WebP
+4. Your image will be automatically saved locally for future sessions
 
 ### Step 2: Position the Compass
 
@@ -149,18 +166,24 @@ vastu-layout-inspector/
 2. Click and drag the compass to position it anywhere on your layout
 3. The compass represents the center point for directional analysis
 
-### Step 3: Analyze Directions
+### Step 3: Adjust Compass Orientation
+
+1. Use the rotation handle to adjust the compass orientation
+2. Align the compass with your layout's actual directional orientation
+3. Fine-tune the rotation for precise directional analysis
+
+### Step 4: Analyze Directions
 
 1. Colored lines extend from the compass center to the edges
 2. Each line represents a cardinal or intercardinal direction
 3. Use these lines to identify which rooms/areas fall in which directions
 4. Compare with Vastu Shastra guidelines for optimal placement
 
-### Step 4: Reset and Adjust
+### Step 5: Reset and Adjust
 
 - Use the "Reset Compass" button to return the compass to the center
 - Use the "Remove Image" button to clear the current image and upload a new one
-- Your image persists automatically and will be restored on page refresh
+- Your image and compass configuration persist automatically and will be restored on page refresh
 
 ## 🎯 Use Cases
 
@@ -232,3 +255,5 @@ Potential features for future versions:
 - **Export Functionality** - Save annotated layouts as images
 - **Template Layouts** - Pre-designed Vastu-compliant layouts
 - **3D Layout Support** - Upload and analyze 3D floor plans
+- **Advanced Image Processing** - Auto-detection of room boundaries
+- **Collaborative Analysis** - Share layouts with consultants or family

@@ -14,6 +14,7 @@ The compass system is the heart of the application, providing interactive direct
 - **[src/components/compass/compass-center.tsx](mdc:src/components/compass/compass-center.tsx)** - Draggable compass center point
 - **[src/components/compass/compass-lines.tsx](mdc:src/components/compass/compass-lines.tsx)** - Directional lines extending from center
 - **[src/components/compass/compass-labels.tsx](mdc:src/components/compass/compass-labels.tsx)** - Direction labels (N, NE, E, SE, S, SW, W, NW)
+- **[src/components/compass/rotation-handle.tsx](mdc:src/components/compass/rotation-handle.tsx)** - Compass rotation control handle
 
 ### Layout Analysis
 Components for image analysis and user interaction:

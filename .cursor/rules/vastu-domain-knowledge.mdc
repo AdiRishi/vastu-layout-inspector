@@ -22,13 +22,87 @@ The application implements a complete 8-direction compass system:
 7. **West (W)** - Violet color - Creativity and children
 8. **Northwest (NW)** - Fuchsia color - Air element, movement
 
-### Key Vastu Guidelines
-- **Entrance Placement**: Ideally in North, Northeast, or East directions
-- **Kitchen Location**: Southeast (preferred) or Northwest directions
-- **Master Bedroom**: Southwest for stability and prosperity
-- **Prayer Room**: Northeast for maximum spiritual energy
-- **Staircase Position**: Southwest, South, or West directions
-- **Living Room**: Northeast, North, or East for positive energy
+### Zone Classification System
+
+The application uses a **three-tier color-coded system** for Vastu compliance:
+
+- **🟢 Excellent/Good (Green Zone)**: Optimal locations that enhance positive energy and align with Vastu principles
+- **🟡 Acceptable (Amber Zone)**: Workable locations that may require minor adjustments or remedies
+- **🔴 Inauspicious (Red Zone)**: Problematic locations that should be avoided or require major remediation
+
+### Detailed Vastu Guidelines by Room/Feature
+
+#### **Main Entrance**
+- **Excellent/Good (Green Zone)**: North, East, Northeast
+- **Acceptable (Amber Zone)**: West
+- **Inauspicious (Red Zone)**: South, Southwest, Southeast
+- **Key Notes**: The "mouth" of the house; determines the quality of energy entering
+
+#### **Kitchen**
+- **Excellent/Good (Green Zone)**: Southeast (SE)
+- **Acceptable (Amber Zone)**: Northwest (NW)
+- **Inauspicious (Red Zone)**: Northeast, Southwest, North, Center
+- **Key Notes**: SE is the zone of Fire (Agni). Placing it in the Water zone (NE) is a major conflict
+
+#### **Master Bedroom**
+- **Excellent/Good (Green Zone)**: Southwest (SW)
+- **Acceptable (Amber Zone)**: None
+- **Inauspicious (Red Zone)**: Southeast, Northeast
+- **Key Notes**: SW provides stability (Earth element). Internal Check: Headboard must point South or East. Avoid North
+
+#### **Other Bedrooms**
+- **Excellent/Good (Green Zone)**: West, Northwest, East
+- **Acceptable (Amber Zone)**: North, South
+- **Inauspicious (Red Zone)**: Southwest (reserved for master), Southeast (can be too energetic)
+- **Key Notes**: SE is the fire zone, which can be overly energetic for restful sleep
+
+#### **Toilets/Bathrooms**
+- **Excellent/Good (Green Zone)**: Northwest (NW)
+- **Acceptable (Amber Zone)**: West, South, Southeast (with remedies)
+- **Inauspicious (Red Zone)**: Northeast, Southwest, Center, East
+- **Key Notes**: CRITICAL RULE: Waste disposal must not contaminate the sacred (NE) or stability (SW) zones
+
+#### **Living Room**
+- **Excellent/Good (Green Zone)**: North, East, Northeast, Northwest
+- **Acceptable (Amber Zone)**: Center (if open)
+- **Inauspicious (Red Zone)**: Southwest
+- **Key Notes**: The social hub; should be in zones that promote positive energy and interaction
+
+#### **Study Room**
+- **Excellent/Good (Green Zone)**: North, East, Northeast, West
+- **Acceptable (Amber Zone)**: None
+- **Inauspicious (Red Zone)**: South, Southwest, Southeast
+- **Key Notes**: These directions are believed to enhance concentration, memory, and wisdom
+
+#### **Pooja/Prayer Area**
+- **Excellent/Good (Green Zone)**: Northeast, East, North
+- **Acceptable (Amber Zone)**: None
+- **Inauspicious (Red Zone)**: South, SW, SE, Center, Under Stairs
+- **Key Notes**: The spiritual center; must be in the most energetically pure zones
+
+#### **Center (Brahmastháha)**
+- **Excellent/Good (Green Zone)**: Completely Open & Empty
+- **Acceptable (Amber Zone)**: None
+- **Inauspicious (Red Zone)**: Any Obstruction (Walls, Pillars, Toilet, Kitchen, Stairs)
+- **Key Notes**: CRITICAL RULE: This is the "lungs" of the house; blockages affect the entire home's energy
+
+#### **Staircase**
+- **Excellent/Good (Green Zone)**: Southwest, South, West
+- **Acceptable (Amber Zone)**: North, East (can cause issues in some homes)
+- **Inauspicious (Red Zone)**: Northeast, Center
+- **Key Notes**: A heavy structure that can create an energy imbalance if placed in a light/sacred zone
+
+#### **Balconies/Windows**
+- **Excellent/Good (Green Zone)**: North, East, Northeast
+- **Acceptable (Amber Zone)**: West
+- **Inauspicious (Red Zone)**: South, Southwest
+- **Key Notes**: Maximizes beneficial morning sunlight and positive energy flow
+
+#### **Heavy Furniture**
+- **Excellent/Good (Green Zone)**: Southwest, South, West
+- **Acceptable (Amber Zone)**: None
+- **Inauspicious (Red Zone)**: Northeast, North, East, Center
+- **Key Notes**: Adds necessary weight to grounding zones and keeps light zones open
 
 ## Application Features for Vastu Analysis
 
@@ -58,9 +132,53 @@ The application implements a complete 8-direction compass system:
 - Local storage for layout persistence
 - Touch-friendly interface for mobile analysis
 
+## Major Vastu Doshas (Defects) - Critical Issues to Identify
+
+### **High-Priority "Red Flag" Defects**
+
+#### **Toilet/Bathroom in Wrong Zone**
+- **Problem Locations**: Northeast (NE), Southwest (SW), or Center (Brahmastháhā)
+- **Why It's Critical**: Contaminates the sacred Water zone (NE), destabilizes the foundational Earth zone (SW), or pollutes the central energy source (Brahmastháhā)
+- **Potential Impact**: Severe health & financial problems, instability, mental unrest, obstacles to progress
+
+#### **Kitchen in Wrong Zone**
+- **Problem Locations**: Northeast (NE), Southwest (SW), or Center (Brahmastháhā)
+- **Why It's Critical**: Creates a severe elemental clash (Fire vs. Water in NE), causes instability (in SW), or introduces disruptive fire energy into the sensitive central zone
+- **Potential Impact**: Major health issues (especially for women), financial losses, family conflicts
+
+#### **Obstruction in the Center**
+- **Problem Location**: Center (Brahmastháhā)
+- **Why It's Critical**: Blocks the primary source of vital energy for the entire house, effectively "suffocating" the space
+- **Potential Impact**: Widespread chaos, lack of opportunities, financial difficulties, mental unrest
+
+#### **Staircase in Wrong Zone**
+- **Problem Locations**: Northeast (NE) or Center (Brahmastháhā)
+- **Why It's Critical**: A heavy structural element that crushes the subtle, positive energies of the sacred NE zone or blocks the central Brahmastháhā
+- **Potential Impact**: Financial struggles, health issues, blocks the inflow of positive energy
+
+#### **Incorrect Water Tank Placement**
+- **Problem Locations**: Underground Tank (UGT) in SW or Overhead Tank (OHT) in NE
+- **Why It's Critical**: A pit in the SW destabilizes the home's foundation. A heavy weight in the NE crushes the sacred energy zone
+- **Potential Impact**: Severe financial instability, health problems, accidents, lack of mental peace
+
+#### **Inauspicious Main Entrance**
+- **Problem Locations**: Southwest (SW), South (S), or Southeast (SE)
+- **Why It's Critical**: SW is linked to misfortune, S to harsh energy (Yama), and SE to conflicts and fire-related issues
+- **Potential Impact**: Hardships, negativity, financial struggles, health issues, conflicts
+
+#### **Master Bedroom in Wrong Zone**
+- **Problem Locations**: Southeast (SE) or Northeast (NE)
+- **Why It's Critical**: SE (Fire zone) can cause arguments and health issues. NE is too sacred for this purpose and can disturb mental peace
+- **Potential Impact**: Marital discord, financial instability, lack of authority for the head of the family
+
+#### **Incorrect Sleeping Direction**
+- **Problem Position**: Head pointing North
+- **Why It's Critical**: Disrupts the body's natural alignment with the Earth's magnetic field, thought to drain energy
+- **Potential Impact**: Disturbed sleep, stress, chronic health issues, energy drain
+
 ## Use Cases
-- **Homeowners**: Analyze existing home layouts
-- **Architects**: Incorporate Vastu principles in new designs
-- **Vastu Consultants**: Professional analysis tool
-- **Property Buyers**: Evaluate properties for Vastu compliance
-- **Interior Designers**: Plan arrangements according to Vastu
+- **Homeowners**: Analyze existing home layouts and identify critical Vastu defects
+- **Architects**: Incorporate Vastu principles in new designs and avoid major doshas
+- **Vastu Consultants**: Professional analysis tool with comprehensive defect identification
+- **Property Buyers**: Evaluate properties for Vastu compliance and identify deal-breakers
+- **Interior Designers**: Plan arrangements according to Vastu and remediate existing issues

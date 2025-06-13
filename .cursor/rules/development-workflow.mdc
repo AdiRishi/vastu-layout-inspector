@@ -3,3 +3,112 @@ description:
 globs:
 alwaysApply: false
 ---
+# Development Workflow
+
+## Package Management
+- **ALWAYS use pnpm** for package management
+- Use `pnpm install`, `pnpm add`, `pnpm remove` (never npm or yarn)
+- Project configured with `pnpm-workspace.yaml`
+
+## Available Scripts
+```bash
+pnpm dev          # Start development server with Turbopack
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run ESLint
+pnpm format       # Format code with Prettier
+```
+
+## Code Standards
+
+### TypeScript
+- Use strict TypeScript configuration
+- Define proper interfaces and types
+- Avoid `any` types - use proper typing
+- Export types alongside components
+
+### Component Patterns
+- Functional components with hooks
+- Props interfaces defined with TypeScript
+- Single responsibility principle
+- Consistent file naming (kebab-case)
+
+### Import Organization
+```typescript
+// 1. React and Next.js imports
+import React from 'react'
+import { NextPage } from 'next'
+
+// 2. Third-party library imports
+import clsx from 'clsx'
+
+// 3. Internal imports (hooks, components, utils)
+import { useDrag } from '@/hooks/use-drag'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+
+// 4. Type imports
+import type { ComponentProps } from 'react'
+```
+
+## File Structure Conventions
+
+### Component Files
+- One component per file
+- Index files for component groups
+- Co-locate related components in directories
+
+### Hook Files
+- Follow `use-` naming convention
+- One hook per file
+- Include proper TypeScript return types
+- Handle cleanup and dependencies
+
+### Utility Files
+- Pure functions when possible
+- Proper TypeScript typing
+- Group related utilities together
+
+## Development Best Practices
+
+### State Management
+- Use React hooks for local state
+- Custom hooks for complex logic
+- Local storage for persistence
+- Avoid prop drilling with context when needed
+
+### Performance
+- Use React.memo for expensive components
+- Optimize re-renders with useCallback/useMemo
+- Lazy load components where appropriate
+- Efficient dependency arrays in hooks
+
+### Error Handling
+- Graceful error boundaries
+- User-friendly error messages
+- Fallback UI states
+- Console logging for debugging
+
+### Testing Considerations
+- Components should be testable
+- Separate business logic into hooks
+- Mock external dependencies
+- Test user interactions
+
+## Code Quality Tools
+
+### ESLint Configuration
+- **[eslint.config.mjs](mdc:eslint.config.mjs)** - ESLint configuration
+- Extends Next.js and React recommended rules
+- Custom rules for import organization
+
+### Prettier Configuration
+- **[.prettierrc.js](mdc:.prettierrc.js)** - Code formatting rules
+- **[.prettierignore](mdc:.prettierignore)** - Files to ignore
+- Includes import sorting plugin
+- Tailwind CSS class sorting
+
+### Editor Configuration
+- **[.editorconfig](mdc:.editorconfig)** - Editor settings
+- Consistent indentation and line endings
+- UTF-8 encoding

@@ -3,3 +3,52 @@ description:
 globs:
 alwaysApply: false
 ---
+# Vastu Layout Inspector - Project Overview
+
+## Project Description
+A modern web application for analyzing home layouts according to Vastu Shastra principles. Users can upload layout images and use an interactive compass overlay to understand directional orientations and spatial arrangements in their homes or properties.
+
+## Technology Stack
+
+### Frontend Framework
+- **Next.js 15** with App Router and Turbopack
+- **React 19** with latest features
+- **TypeScript** for type safety
+
+### Styling & UI
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **shadcn/ui** - Modern component system built on Radix UI
+- **Lucide React** - Icon library
+
+### Package Management
+- **pnpm** - Fast, disk space efficient package manager
+- **pnpm workspace** configuration for monorepo support
+
+## Key Features
+- **Image Upload & Clipboard Support** - Multiple ways to load layout images
+- **Interactive Compass System** - Draggable and rotatable compass overlay
+- **8-Direction Analysis** - Full cardinal and intercardinal directions
+- **Local Persistence** - Images and configurations saved automatically
+- **Mobile Responsive** - Touch-optimized controls and responsive design
+- **Color-Coded Directions** - Visual system for easy direction identification
+
+## Project Structure
+```
+src/
+├── app/           # Next.js App Router pages
+├── components/    # React components (compass, layout-analysis, ui)
+├── hooks/         # Custom React hooks (9 total)
+├── lib/           # Utility functions and constants
+└── public/        # Static assets
+```
+
+## Development Principles
+- **TypeScript-first** - Strong typing throughout
+- **Component-driven** - Reusable, focused components
+- **Hook-based** - Custom hooks for complex state and logic
+- **Responsive design** - Mobile-first approach
+- **Local-first** - Client-side persistence and functionality
+- **Accessibility** - ARIA compliance and keyboard navigation
+
+## Domain Focus
+Specialized tool for **Vastu Shastra analysis** - ancient Indian architectural principles focusing on directional orientation in building design.
